@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/twer/workspace/go/src/mybmwscript"
+		},
+		{
+			"path": "/Users/twer/workspace/go/src/xlsx"
+		},
+		{
+			"file_include_patterns": ["*.go"]
+		}
+	]
+}

@@ -1,0 +1,2536 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fu",
+				"func	Function"
+			],
+			[
+				"fun",
+				"funcv	Function w/ result vars"
+			],
+			[
+				"s",
+				"sheetLen	 ν"
+			],
+			[
+				"pri",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"Spr",
+				"Sprintf	string ƒ"
+			],
+			[
+				"cel",
+				"cellIndex	 ν"
+			],
+			[
+				"for",
+				"forr	For Range Loop"
+			],
+			[
+				"main",
+				"func main	func main {...} ʂ"
+			],
+			[
+				"N",
+				"NotFound	 ƒ"
+			],
+			[
+				"pa",
+				"Path	string ν"
+			],
+			[
+				"RE",
+				"Request	struct ʈ"
+			],
+			[
+				"Handle",
+				"HandleFunc	 ƒ"
+			],
+			[
+				"re",
+				"resw	http.ResponseWriter ν"
+			],
+			[
+				"F",
+				"Fprintf	n int, err error ƒ"
+			],
+			[
+				"fo",
+				"forr	For Range Loop"
+			],
+			[
+				"P",
+				"Path	string ν"
+			],
+			[
+				"Pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"Res",
+				"ResponseWriter	interface ¡"
+			],
+			[
+				"add",
+				"address	uintptr ν"
+			],
+			[
+				"st",
+				"str2	*string ν"
+			],
+			[
+				"Pri",
+				"Printf	n int, err error ƒ"
+			],
+			[
+				"A",
+				"Add	*big.Int ƒ"
+			],
+			[
+				"e",
+				"example	interface ¡"
+			],
+			[
+				"f",
+				"float	float32 ν"
+			],
+			[
+				"Prin",
+				"Printf	n int, err error ƒ"
+			],
+			[
+				"In",
+				"FileInfo	interface ¡"
+			],
+			[
+				"c",
+				"Close	error ƒ"
+			],
+			[
+				"C",
+				"Count	int ƒ"
+			],
+			[
+				"pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"Go",
+				"Gosched	 ƒ"
+			],
+			[
+				"PAH",
+				"PATH"
+			],
+			[
+				"im",
+				"import	import (...) ʂ"
+			],
+			[
+				"func",
+				"func (*Human)	func (...) {...} ʂ"
+			],
+			[
+				"a",
+				"area"
+			],
+			[
+				"p",
+				"Printf"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "mappingSso2Ac.go",
+			"settings":
+			{
+				"buffer_size": 560,
+				"line_ending": "Unix",
+				"name": "untitled.go"
+			}
+		},
+		{
+			"file": "/Users/twer/workspace/go/src/xlsx2csv/main.go",
+			"settings":
+			{
+				"buffer_size": 1679,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 16 files for \"Sheet\"\n\n/Users/twer/workspace/go/src/mybmwscript/mappingSso2Ac.go:\n    6  )\n    7  \n    8: func findMatchRow(sheet Sheet, name string, email string) string {\n    9: 	for _, row := range sheet.Rows {\n   10  		if row.Cells[1] == name && row.Cells[13] == email {\n   11  			return row.Cells[0]\n   ..\n   24  	}\n   25  \n   26: 	id := findMatchRow(xlFile.Sheets[0], \"洪恩道\", \"390735904@qq.com\")\n   27  	fmt.Println(\"id is: \", id)\n   28  \n\n/Users/twer/workspace/go/src/xlsx/doc.go:\n    1  // xslx is a package designed to help with reading data from\n    2: // spreadsheets stored in the XLSX format used in recent versions of\n    3: // Microsoft's Excel spreadsheet.\n    4  //\n    5  // For a concise example of how to use this library why not check out\n\n/Users/twer/workspace/go/src/xlsx/lib.go:\n   40  \n   41  // Row is a high level structure indended to provide user access to a\n   42: // row within a xlsx.Sheet.  An xlsx.Row contains a slice of xlsx.Cell.\n   43  type Row struct {\n   44  	Cells []*Cell\n   45  }\n   46  \n   47: // Sheet is a high level structure intended to provide user access to\n   48: // the contents of a particular sheet within an XLSX file.\n   49: type Sheet struct {\n   50  	Rows []*Row\n   51  }\n   52  \n   53: // File is a high level structure providing a slice of Sheet structs\n   54  // to the user.\n   55  type File struct {\n   56: 	worksheets     map[string]*zip.File\n   57  	referenceTable []string\n   58: 	Sheets         []*Sheet\n   59  }\n   60  \n   ..\n  220  }\n  221  \n  222: // readRowsFromSheet is an internal helper function that extracts the\n  223: // rows from a XSLXWorksheet, poulates them with Cells and resolves\n  224  // the value references from the reference table and stores them in\n  225: func readRowsFromSheet(Worksheet *xlsxWorksheet, reftable []string) []*Row {\n  226  	var rows []*Row\n  227  	var row *Row\n  228  \n  229: 	rows = make([]*Row, len(Worksheet.SheetData.Row))\n  230: 	for i, rawrow := range Worksheet.SheetData.Row {\n  231  		row = makeRowFromSpan(rawrow.Spans)\n  232  		for _, rawcell := range rawrow.C {\n  ...\n  242  }\n  243  \n  244: // readSheetsFromZipFile is an internal helper function that loops\n  245: // over the Worksheets defined in the XSLXWorkbook and loads them into\n  246: // Sheet objects stored in the Sheets slice of a xlsx.File struct.\n  247: func readSheetsFromZipFile(f *zip.File, file *File) ([]*Sheet, error) {\n  248  	var workbook *xlsxWorkbook\n  249  	var error error\n  ...\n  260  		return nil, error\n  261  	}\n  262: 	sheets := make([]*Sheet, len(workbook.Sheets.Sheet))\n  263: 	for i, rawsheet := range workbook.Sheets.Sheet {\n  264: 		worksheet, error := getWorksheetFromSheet(rawsheet, file.worksheets)\n  265  		if error != nil {\n  266  			return nil, error\n  267  		}\n  268: 		sheet := new(Sheet)\n  269: 		sheet.Rows = readRowsFromSheet(worksheet, file.referenceTable)\n  270: 		sheets[i] = sheet\n  271  	}\n  272: 	return sheets, nil\n  273  }\n  274  \n  ...\n  306  	var sharedStrings *zip.File\n  307  	var reftable []string\n  308: 	var worksheets map[string]*zip.File\n  309  	f, error = zip.OpenReader(filename)\n  310  	if error != nil {\n  ...\n  312  	}\n  313  	file = new(File)\n  314: 	worksheets = make(map[string]*zip.File, len(f.File))\n  315  	for _, v = range f.File {\n  316  		switch v.Name {\n  ...\n  321  		default:\n  322  			if len(v.Name) > 12 {\n  323: 				if v.Name[0:13] == \"xl/worksheets\" {\n  324: 					worksheets[v.Name[14:len(v.Name)-4]] = v\n  325  				}\n  326  			}\n  327  		}\n  328  	}\n  329: 	file.worksheets = worksheets\n  330  	reftable, error = readSharedStringsFromZipFile(sharedStrings)\n  331  	if error != nil {\n  ...\n  338  	}\n  339  	file.referenceTable = reftable\n  340: 	sheets, error := readSheetsFromZipFile(workbook, file)\n  341  	if error != nil {\n  342  		return nil, error\n  343  	}\n  344: 	if sheets == nil {\n  345  		error := new(XLSXReaderError)\n  346: 		error.Err = \"No sheets found in XLSX File\"\n  347  		return nil, error\n  348  	}\n  349: 	file.Sheets = sheets\n  350  	f.Close()\n  351  	return file, nil\n\n/Users/twer/workspace/go/src/xlsx/lib_test.go:\n   26  }\n   27  \n   28: // Test that when we open a real XLSX file we create xlsx.Sheet\n   29: // objects for the sheets inside the file and that these sheets are\n   30  // themselves correct.\n   31: func TestCreateSheet(t *testing.T) {\n   32  	var xlsxFile *File\n   33  	var error error\n   34: 	var sheet *Sheet\n   35  	var row *Row\n   36  	xlsxFile, error = OpenFile(\"testfile.xlsx\")\n   ..\n   43  		return\n   44  	}\n   45: 	sheetLen := len(xlsxFile.Sheets)\n   46: 	if sheetLen == 0 {\n   47: 		t.Error(\"Expected len(xlsxFile.Sheets) > 0, but got \", sheetLen)\n   48  		return\n   49  	}\n   50: 	sheet = xlsxFile.Sheets[0]\n   51: 	rowLen := len(sheet.Rows)\n   52  	if rowLen != 2 {\n   53: 		t.Error(\"Expected len(sheet.Rows) == 2, but got \", rowLen)\n   54  		return\n   55  	}\n   56: 	row = sheet.Rows[0]\n   57  	if len(row.Cells) != 2 {\n   58  		t.Error(\"Expected len(row.Cells) == 2\")\n   ..\n  231  }\n  232  \n  233: func TestReadRowsFromSheet(t *testing.T) {\n  234  	var sharedstringsXML = bytes.NewBufferString(`\n  235  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n  236: <sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"4\" uniqueCount=\"4\">\n  237    <si>\n  238      <t>Foo</t>\n  ...\n  248    </si>\n  249  </sst>`)\n  250: 	var sheetxml = bytes.NewBufferString(`\n  251  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n  252: <worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"\n  253             xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">\n  254    <dimension ref=\"A1:B2\"/>\n  255:   <sheetViews>\n  256:     <sheetView tabSelected=\"1\" workbookViewId=\"0\">\n  257        <selection activeCell=\"C2\" sqref=\"C2\"/>\n  258:     </sheetView>\n  259:   </sheetViews>\n  260:   <sheetFormatPr baseColWidth=\"10\" defaultRowHeight=\"15\"/>\n  261:   <sheetData>\n  262      <row r=\"1\" spans=\"1:2\">\n  263        <c r=\"A1\" t=\"s\">\n  ...\n  276        </c>\n  277      </row>\n  278:   </sheetData>\n  279    <pageMargins left=\"0.7\" right=\"0.7\"\n  280                 top=\"0.78740157499999996\"\n  ...\n  282                 header=\"0.3\"\n  283                 footer=\"0.3\"/>\n  284: </worksheet>`)\n  285: 	worksheet := new(xlsxWorksheet)\n  286: 	error := xml.NewDecoder(sheetxml).Decode(worksheet)\n  287  	if error != nil {\n  288  		t.Error(error.Error())\n  ...\n  296  	}\n  297  	reftable := MakeSharedStringRefTable(sst)\n  298: 	rows := readRowsFromSheet(worksheet, reftable)\n  299  	if len(rows) != 2 {\n  300  		t.Error(\"Expected len(rows) == 2\")\n  ...\n  315  }\n  316  \n  317: func TestReadRowsFromSheetWithEmptyCells(t *testing.T) {\n  318  	var sharedstringsXML = bytes.NewBufferString(`\n  319  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n  320: <sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"8\" uniqueCount=\"5\"><si><t>Bob</t></si><si><t>Alice</t></si><si><t>Sue</t></si><si><t>Yes</t></si><si><t>No</t></si></sst>`)\n  321: 	var sheetxml = bytes.NewBufferString(`\n  322  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n  323: <worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><dimension ref=\"A1:C3\"/><sheetViews><sheetView tabSelected=\"1\" workbookViewId=\"0\"><selection activeCell=\"D3\" sqref=\"D3\"/></sheetView></sheetViews><sheetFormatPr baseColWidth=\"10\" defaultRowHeight=\"15\"/>\n  324: <sheetData>\n  325    <row r=\"1\" spans=\"1:3\">\n  326      <c r=\"A1\" t=\"s\">\n  ...\n  369      </c>\n  370    </row>\n  371: </sheetData>\n  372  <pageMargins left=\"0.7\" right=\"0.7\" top=\"0.78740157499999996\" bottom=\"0.78740157499999996\" header=\"0.3\" footer=\"0.3\"/>\n  373: </worksheet>\n  374  \n  375  `)\n  376: 	worksheet := new(xlsxWorksheet)\n  377: 	error := xml.NewDecoder(sheetxml).Decode(worksheet)\n  378  	if error != nil {\n  379  		t.Error(error.Error())\n  ...\n  387  	}\n  388  	reftable := MakeSharedStringRefTable(sst)\n  389: 	rows := readRowsFromSheet(worksheet, reftable)\n  390  	if len(rows) != 3 {\n  391  		t.Error(\"Expected len(rows) == 3, got \", strconv.Itoa(len(rows)))\n  ...\n  410  }\n  411  \n  412: func TestReadRowsFromSheetWithTrailingEmptyCells(t *testing.T) {\n  413  	var row *Row\n  414  	var cell1, cell2, cell3, cell4 *Cell\n  415  	var sharedstringsXML = bytes.NewBufferString(`\n  416  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n  417: <sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"4\" uniqueCount=\"4\"><si><t>A</t></si><si><t>B</t></si><si><t>C</t></si><si><t>D</t></si></sst>`)\n  418: 	var sheetxml = bytes.NewBufferString(`\n  419  <?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n  420: <worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><dimension ref=\"A1:D8\"/><sheetViews><sheetView tabSelected=\"1\" workbookViewId=\"0\"><selection activeCell=\"A7\" sqref=\"A7\"/></sheetView></sheetViews><sheetFormatPr baseColWidth=\"10\" defaultRowHeight=\"15\"/><sheetData><row r=\"1\" spans=\"1:4\"><c r=\"A1\" t=\"s\"><v>0</v></c><c r=\"B1\" t=\"s\"><v>1</v></c><c r=\"C1\" t=\"s\"><v>2</v></c><c r=\"D1\" t=\"s\"><v>3</v></c></row><row r=\"2\" spans=\"1:4\"><c r=\"A2\"><v>1</v></c></row><row r=\"3\" spans=\"1:4\"><c r=\"B3\"><v>1</v></c></row><row r=\"4\" spans=\"1:4\"><c r=\"C4\"><v>1</v></c></row><row r=\"5\" spans=\"1:4\"><c r=\"D5\"><v>1</v></c></row><row r=\"6\" spans=\"1:4\"><c r=\"C6\"><v>1</v></c></row><row r=\"7\" spans=\"1:4\"><c r=\"B7\"><v>1</v></c></row><row r=\"8\" spans=\"1:4\"><c r=\"A8\"><v>1</v></c></row></sheetData><pageMargins left=\"0.7\" right=\"0.7\" top=\"0.78740157499999996\" bottom=\"0.78740157499999996\" header=\"0.3\" footer=\"0.3\"/></worksheet>\n  421  `)\n  422: 	worksheet := new(xlsxWorksheet)\n  423: 	error := xml.NewDecoder(sheetxml).Decode(worksheet)\n  424  	if error != nil {\n  425  		t.Error(error.Error())\n  ...\n  433  	}\n  434  	reftable := MakeSharedStringRefTable(sst)\n  435: 	rows := readRowsFromSheet(worksheet, reftable)\n  436  	if len(rows) != 8 {\n  437  		t.Error(\"Expected len(rows) == 8, got \", strconv.Itoa(len(rows)))\n\n/Users/twer/workspace/go/src/xlsx/sharedstrings.go:\n    3  \n    4  // xlsxSST directly maps the sst element from the namespace\n    5: // http://schemas.openxmlformats.org/spreadsheetml/2006/main currently\n    6  // I have not checked this for completeness - it does as much as need.\n    7  type xlsxSST struct {\n    .\n   13  \n   14  // xlsxSI directly maps the si element from the namespace\n   15: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   16  // currently I have not checked this for completeness - it does as\n   17  // much as I need.\n   ..\n   21  \n   22  // // xlsxT directly maps the t element from the namespace\n   23: // // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   24  // // currently I have not checked this for completeness - it does as\n   25  // // much as I need.\n   ..\n   31  // MakeSharedStringRefTable() takes an xlsxSST struct and converts\n   32  // it's contents to an slice of strings used to refer to string values\n   33: // by numeric index - this is the model used within XLSX worksheet (a\n   34  // numeric reference is stored to a shared cell value).\n   35  func MakeSharedStringRefTable(source *xlsxSST) []string {\n\n/Users/twer/workspace/go/src/xlsx/sharedstrings_test.go:\n   10  func TestMakeSharedStringRefTable(t *testing.T) {\n   11  	var sharedstringsXML = bytes.NewBufferString(`<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n   12: <sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"4\" uniqueCount=\"4\"><si><t>Foo</t></si><si><t>Bar</t></si><si><t xml:space=\"preserve\">Baz </t></si><si><t>Quuk</t></si></sst>`)\n   13  	sst := new(xlsxSST)\n   14  	error := xml.NewDecoder(sharedstringsXML).Decode(sst)\n   ..\n   34  func TestResolveSharedString(t *testing.T) {\n   35  	var sharedstringsXML = bytes.NewBufferString(`<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n   36: <sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"4\" uniqueCount=\"4\"><si><t>Foo</t></si><si><t>Bar</t></si><si><t xml:space=\"preserve\">Baz </t></si><si><t>Quuk</t></si></sst>`)\n   37  	sst := new(xlsxSST)\n   38  	error := xml.NewDecoder(sharedstringsXML).Decode(sst)\n   ..\n   51  func TestUnmarshallSharedStrings(t *testing.T) {\n   52  	var sharedstringsXML = bytes.NewBufferString(`<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n   53: <sst xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" count=\"4\" uniqueCount=\"4\"><si><t>Foo</t></si><si><t>Bar</t></si><si><t xml:space=\"preserve\">Baz </t></si><si><t>Quuk</t></si></sst>`)\n   54  	sst := new(xlsxSST)\n   55  	error := xml.NewDecoder(sharedstringsXML).Decode(sst)\n\n/Users/twer/workspace/go/src/xlsx/workbook.go:\n    9  \n   10  // xlsxWorkbook directly maps the workbook element from the namespace\n   11: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   12  // currently I have not checked it for completeness - it does as much\n   13  // as I need.\n   ..\n   16  	WorkbookPr   xlsxWorkbookPr   `xml:\"workbookPr\"`\n   17  	BookViews    xlsxBookViews    `xml:\"bookViews\"`\n   18: 	Sheets       xlsxSheets       `xml:\"sheets\"`\n   19  	DefinedNames xlsxDefinedNames `xml:\"definedNames\"`\n   20  	CalcPr       xlsxCalcPr       `xml:\"calcPr\"`\n   ..\n   22  \n   23  // xlsxFileVersion directly maps the fileVersion element from the\n   24: // namespace http://schemas.openxmlformats.org/spreadsheetml/2006/main\n   25  // - currently I have not checked it for completeness - it does as\n   26  // much as I need.\n   ..\n   33  \n   34  // xlsxWorkbookPr directly maps the workbookPr element from the\n   35: // namespace http://schemas.openxmlformats.org/spreadsheetml/2006/main\n   36  // - currently I have not checked it for completeness - it does as\n   37  // much as I need.\n   ..\n   41  \n   42  // xlsxBookViews directly maps the bookViews element from the\n   43: // namespace http://schemas.openxmlformats.org/spreadsheetml/2006/main\n   44  // - currently I have not checked it for completeness - it does as\n   45  // much as I need.\n   ..\n   49  \n   50  // xlsxWorkBookView directly maps the workbookView element from the\n   51: // namespace http://schemas.openxmlformats.org/spreadsheetml/2006/main\n   52  // - currently I have not checked it for completeness - it does as\n   53  // much as I need.\n   ..\n   59  }\n   60  \n   61: // xlsxSheets directly maps the sheets element from the namespace\n   62: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   63  // currently I have not checked it for completeness - it does as much\n   64  // as I need.\n   65: type xlsxSheets struct {\n   66: 	Sheet []xlsxSheet `xml:\"sheet\"`\n   67  }\n   68  \n   69: // xlsxSheet directly maps the sheet element from the namespace\n   70: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   71  // currently I have not checked it for completeness - it does as much\n   72  // as I need.\n   73: type xlsxSheet struct {\n   74  	Name    string `xml:\"name,attr\"`\n   75: 	SheetId string `xml:\"sheetId,attr\"`\n   76  	Id      string `xml:\"id,attr\"`\n   77  }\n   78  \n   79  // xlsxDefinedNames directly maps the definedNames element from the\n   80: // namespace http://schemas.openxmlformats.org/spreadsheetml/2006/main\n   81  // - currently I have not checked it for completeness - it does as\n   82  // much as I need.\n   ..\n   86  \n   87  // xlsxDefinedName directly maps the definedName element from the\n   88: // namespace http://schemas.openxmlformats.org/spreadsheetml/2006/main\n   89  // - currently I have not checked it for completeness - it does as\n   90  // much as I need.\n   ..\n   92  	Data         string `xml:\",chardata\"`\n   93  	Name         string `xml:\"name,attr\"`\n   94: 	LocalSheetID string `xml:\"localSheetId,attr\"`\n   95  }\n   96  \n   97  // xlsxCalcPr directly maps the calcPr element from the namespace\n   98: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   99  // currently I have not checked it for completeness - it does as much\n  100  // as I need.\n  ...\n  103  }\n  104  \n  105: // getWorksheetFromSheet() is an internal helper function to open a sheetN.xml file, refered to by an xlsx.xlsxSheet struct, from the XLSX file and unmarshal it an xlsx.xlsxWorksheet struct\n  106: func getWorksheetFromSheet(sheet xlsxSheet, worksheets map[string]*zip.File) (*xlsxWorksheet, error) {\n  107  	var rc io.ReadCloser\n  108  	var decoder *xml.Decoder\n  109: 	var worksheet *xlsxWorksheet\n  110  	var error error\n  111: 	worksheet = new(xlsxWorksheet)\n  112: 	sheetName := fmt.Sprintf(\"sheet%s\", sheet.SheetId)\n  113: 	f := worksheets[sheetName]\n  114  	rc, error = f.Open()\n  115  	if error != nil {\n  ...\n  117  	}\n  118  	decoder = xml.NewDecoder(rc)\n  119: 	error = decoder.Decode(worksheet)\n  120  	if error != nil {\n  121  		return nil, error\n  122  	}\n  123: 	return worksheet, nil\n  124  }\n  125  \n\n/Users/twer/workspace/go/src/xlsx/workbook_test.go:\n   12  func TestUnmarshallWorkbookXML(t *testing.T) {\n   13  	var error error\n   14: 	var buf = bytes.NewBufferString(`<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><workbook xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><fileVersion appName=\"xl\" lastEdited=\"4\" lowestEdited=\"4\" rupBuild=\"4506\"/><workbookPr defaultThemeVersion=\"124226\"/><bookViews><workbookView xWindow=\"120\" yWindow=\"75\" windowWidth=\"15135\" windowHeight=\"7620\"/></bookViews><sheets><sheet name=\"Sheet1\" sheetId=\"1\" r:id=\"rId1\"/><sheet name=\"Sheet2\" sheetId=\"2\" r:id=\"rId2\"/><sheet name=\"Sheet3\" sheetId=\"3\" r:id=\"rId3\"/></sheets><definedNames><definedName name=\"monitors\" localSheetId=\"0\">Sheet1!$A$1533</definedName></definedNames><calcPr calcId=\"125725\"/></workbook>`)\n   15  	var workbook *xlsxWorkbook\n   16  	workbook = new(xlsxWorkbook)\n   ..\n   51  		t.Error(\"Expected workBookView.WindowHeight == '7620'\")\n   52  	}\n   53: 	if len(workbook.Sheets.Sheet) == 0 {\n   54: 		t.Error(\"Expected len(workbook.Sheets.Sheet) == 0\")\n   55  	}\n   56: 	sheet := workbook.Sheets.Sheet[0]\n   57: 	if sheet.Id != \"rId1\" {\n   58: 		t.Error(\"Expected sheet.Id == 'rID1'\")\n   59  	}\n   60: 	if sheet.Name != \"Sheet1\" {\n   61: 		t.Error(\"Expected sheet.Name == 'Sheet1'\")\n   62  	}\n   63: 	if sheet.SheetId != \"1\" {\n   64: 		t.Error(\"Expected sheet.SheetId == '1'\")\n   65  	}\n   66  	if len(workbook.DefinedNames.DefinedName) == 0 {\n   ..\n   68  	}\n   69  	dname := workbook.DefinedNames.DefinedName[0]\n   70: 	if dname.Data != \"Sheet1!$A$1533\" {\n   71: 		t.Error(\"dname.Data == 'Sheet1!$A$1533', but got '\", dname.Data, \"'\")\n   72  	}\n   73: 	if dname.LocalSheetID != \"0\" {\n   74: 		t.Error(\"dname.LocalSheetID == '0'\")\n   75  	}\n   76  	if dname.Name != \"monitors\" {\n\n/Users/twer/workspace/go/src/xlsx/worksheet.go:\n    1  package xlsx\n    2  \n    3: // xlsxWorksheet directly maps the worksheet element in the namespace\n    4: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n    5  // currently I have not checked it for completeness - it does as much\n    6  // as I need.\n    7: type xlsxWorksheet struct {\n    8  	Dimension     xlsxDimension      `xml:\"dimension\"`\n    9: 	SheetViews    xlsxSheetViews     `xml:\"sheetViews\"`\n   10: 	SheetFormatPr xlsxSheetFormatPr  `xml:\"sheetFormatPr\"`\n   11: 	SheetData     xlsxSheetData      `xml:\"sheetData\"`\n   12  }\n   13  \n   14  // xlsxDimension directly maps the dimension element in the namespace\n   15: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   16  // currently I have not checked it for completeness - it does as much\n   17  // as I need.\n   ..\n   20  }\n   21  \n   22: // xlsxSheetViews directly maps the sheetViews element in the namespace\n   23: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   24  // currently I have not checked it for completeness - it does as much\n   25  // as I need.\n   26: type xlsxSheetViews struct {\n   27: 	SheetView []xlsxSheetView `xml:\"sheetView\"`\n   28  }\n   29  \n   30: // xlsxSheetView directly maps the sheetView element in the namespace\n   31: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   32  // currently I have not checked it for completeness - it does as much\n   33  // as I need.\n   34: type xlsxSheetView struct {\n   35  	TabSelected    string `xml:\"tabSelected,attr\"`\n   36  	WorkbookViewID string `xml:\"workbookViewId,attr\"`\n   ..\n   40  \n   41  // xlsxSelection directly maps the selection element in the namespace\n   42: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   43  // currently I have not checked it for completeness - it does as much\n   44  // as I need.\n   ..\n   49  }\n   50  \n   51: // xlsxSheetFormatPr directly maps the sheetFormatPr element in the namespace\n   52: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   53  // currently I have not checked it for completeness - it does as much\n   54  // as I need.\n   55: type xlsxSheetFormatPr struct {\n   56  	BaseColWidth     string `xml:\"baseColWidth,attr\"`\n   57  	DefaultRowHeight string `xml:\"defaultRowHeight,attr\"`\n   58  }\n   59  \n   60: // xlsxSheetData directly maps the sheetData element in the namespace\n   61: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   62  // currently I have not checked it for completeness - it does as much\n   63  // as I need.\n   64: type xlsxSheetData struct {\n   65  	Row []xlsxRow  `xml:\"row\"`\n   66  }\n   67  \n   68  // xlsxRow directly maps the row element in the namespace\n   69: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   70  // currently I have not checked it for completeness - it does as much\n   71  // as I need.\n   ..\n   77  \n   78  // xlsxC directly maps the c element in the namespace\n   79: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   80  // currently I have not checked it for completeness - it does as much\n   81  // as I need.\n   ..\n   88  \n   89  // xlsxV directly maps the v element in the namespace\n   90: // http://schemas.openxmlformats.org/spreadsheetml/2006/main -\n   91  // currently I have not checked it for completeness - it does as much\n   92  // as I need.\n\n/Users/twer/workspace/go/src/xlsx/worksheet_test.go:\n    8  )\n    9  \n   10: // Test we can succesfully unmarshal the sheetN.xml files within and\n   11: // XLSX file into an xlsxWorksheet struct (and it's related children).\n   12: func TestUnmarshallWorksheet(t *testing.T) {\n   13: 	var sheetxml = bytes.NewBufferString(`<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n   14: <worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\"><dimension ref=\"A1:B2\"/><sheetViews><sheetView tabSelected=\"1\" workbookViewId=\"0\"><selection activeCell=\"C2\" sqref=\"C2\"/></sheetView></sheetViews><sheetFormatPr baseColWidth=\"10\" defaultRowHeight=\"15\"/><sheetData><row r=\"1\" spans=\"1:2\"><c r=\"A1\" t=\"s\"><v>0</v></c><c r=\"B1\" t=\"s\"><v>1</v></c></row><row r=\"2\" spans=\"1:2\"><c r=\"A2\" t=\"s\"><v>2</v></c><c r=\"B2\" t=\"s\"><v>3</v></c></row></sheetData><pageMargins left=\"0.7\" right=\"0.7\" top=\"0.78740157499999996\" bottom=\"0.78740157499999996\" header=\"0.3\" footer=\"0.3\"/></worksheet>`)\n   15: 	worksheet := new(xlsxWorksheet)\n   16: 	error := xml.NewDecoder(sheetxml).Decode(worksheet)\n   17  	if error != nil {\n   18  		t.Error(error.Error())\n   19  		return\n   20  	}\n   21: 	if worksheet.Dimension.Ref != \"A1:B2\" {\n   22: 		t.Error(fmt.Sprintf(\"Expected worksheet.Dimension.Ref == 'A1:B2', got %s\", worksheet.Dimension.Ref))\n   23  	}\n   24: 	if len(worksheet.SheetViews.SheetView) == 0 {\n   25: 		t.Error(fmt.Sprintf(\"Expected len(worksheet.SheetViews.SheetView) == 1, got %d\", len(worksheet.SheetViews.SheetView)))\n   26  	}\n   27: 	sheetview := worksheet.SheetViews.SheetView[0]\n   28: 	if sheetview.TabSelected != \"1\" {\n   29: 		t.Error(fmt.Sprintf(\"Expected sheetview.TabSelected == '1', got %s\", sheetview.TabSelected))\n   30  	}\n   31: 	if sheetview.WorkbookViewID != \"0\" {\n   32: 		t.Error(fmt.Sprintf(\"Expected sheetview.WorkbookViewID == '0', got %s\", sheetview.WorkbookViewID))\n   33  	}\n   34: 	if sheetview.Selection.ActiveCell != \"C2\" {\n   35: 		t.Error(fmt.Sprintf(\"Expeceted sheetview.Selection.ActiveCell == 'C2', got %s\", sheetview.Selection.ActiveCell))\n   36  	}\n   37: 	if sheetview.Selection.SQRef != \"C2\" {\n   38: 		t.Error(fmt.Sprintf(\"Expected sheetview.Selection.SQRef == 'C2', got %s\", sheetview.Selection.SQRef))\n   39  	}\n   40: 	if worksheet.SheetFormatPr.BaseColWidth != \"10\" {\n   41: 		t.Error(fmt.Sprintf(\"Expected worksheet.SheetFormatPr.BaseColWidth == '10', got %s\", worksheet.SheetFormatPr.BaseColWidth))\n   42  	}\n   43: 	if worksheet.SheetFormatPr.DefaultRowHeight != \"15\" {\n   44: 		t.Error(fmt.Sprintf(\"Expected worksheet.SheetFormatPr.DefaultRowHeight == '15', got %s\", worksheet.SheetFormatPr.DefaultRowHeight))\n   45  	}\n   46: 	if len(worksheet.SheetData.Row) == 0 {\n   47: 		t.Error(fmt.Sprintf(\"Expected len(worksheet.SheetData.Row) == '2', got %d\", worksheet.SheetData.Row))\n   48  	}\n   49: 	row := worksheet.SheetData.Row[0]\n   50  	if row.R != \"1\" {\n   51  		t.Error(fmt.Sprintf(\"Expected row.r == '1', got %s\", row.R))\n\n/Users/twer/workspace/go/src/xlsx/xlsx.sublime-workspace:\n  133  		},\n  134  		{\n  135: 			\"contents\": \"Searching 12 files for \\\"testfile.xlsx\\\"\\n\\n/Users/twer/workspace/go/src/xlsx/lib_test.go:\\n   14  	var xlsxFile *File\\n   15  	var error error\\n   16: 	xlsxFile, error = OpenFile(\\\"testfile.xlsx\\\")\\n   17  	if error != nil {\\n   18  		t.Error(error.Error())\\n   ..\\n   34  	var sheet *Sheet\\n   35  	var row *Row\\n   36: 	xlsxFile, error = OpenFile(\\\"testfile.xlsx\\\")\\n   37  	if error != nil {\\n   38  		t.Error(error.Error())\\n   ..\\n   72  	var xlsxFile *File\\n   73  	var error error\\n   74: 	xlsxFile, error = OpenFile(\\\"testfile.xlsx\\\")\\n   75  	if error != nil {\\n   76  		t.Error(error.Error())\\n\\n3 matches in 1 file\\n\\n\\nSearching 17 files for \\\"generateCSVFromXLSXFile\\\"\\n\\n/Users/twer/workspace/go/src/xlsx2csv/main.go:\\n   21  }\\n   22  \\n   23: func generateCSVFromXLSXFile(excelFileName string, sheetIndex int, outputf Outputer) error {\\n   24  	var xlFile *xlsx.File\\n   25  	var error error\\n   ..\\n   74  	}\\n   75  	flag.Parse()\\n   76: 	error = generateCSVFromXLSXFile(*xlsxPath, *sheetIndex, func(s string) { fmt.Printf(\\\"%s\\\", s) })\\n   77  	if error != nil {\\n   78  		fmt.Printf(error.Error())\\n\\n/Users/twer/workspace/go/src/xlsx2csv/main_test.go:\\n    8  \\n    9  \\n   10: func TestGenerateCSVFromXLSXFile(t *testing.T) {\\n   11  	var sheetIndex int\\n   12  	var excelFileName string\\n   ..\\n   21  	sheetIndex = 0\\n   22  	excelFileName = \\\"testfile.xlsx\\\"\\n   23: 	error := generateCSVFromXLSXFile(excelFileName, sheetIndex, testOutputer)\\n   24  	if error != nil {\\n   25  		t.Error(error.Error())\\n   ..\\n   38  }\\n   39  \\n   40: func TestGenerateCSVFromXLSXFileWithEmptyCells(t *testing.T) {\\n   41  var sheetIndex int\\n   42  	var excelFileName string\\n   ..\\n   52  	sheetIndex = 0\\n   53  	excelFileName = \\\"testfile2.xlsx\\\"\\n   54: 	error := generateCSVFromXLSXFile(excelFileName, sheetIndex, testOutputer)\\n   55  	if error != nil {\\n   56  		t.Error(error.Error())\\n\\n6 matches across 2 files\\n\\n\\nSearching 17 files for \\\"generateCSVFromXLSXFile\\\"\\n\\n/Users/twer/workspace/go/src/xlsx2csv/main.go:\\n   21  }\\n   22  \\n   23: func generateCSVFromXLSXFile(excelFileName string, sheetIndex int, outputf Outputer) error {\\n   24  	var xlFile *xlsx.File\\n   25  	var error error\\n   ..\\n   74  	}\\n   75  	flag.Parse()\\n   76: 	error = generateCSVFromXLSXFile(*xlsxPath, *sheetIndex, func(s string) { fmt.Printf(\\\"%s\\\", s) })\\n   77  	if error != nil {\\n   78  		fmt.Printf(error.Error())\\n\\n/Users/twer/workspace/go/src/xlsx2csv/main_test.go:\\n    8  \\n    9  \\n   10: func TestGenerateCSVFromXLSXFile(t *testing.T) {\\n   11  	var sheetIndex int\\n   12  	var excelFileName string\\n   ..\\n   21  	sheetIndex = 0\\n   22  	excelFileName = \\\"testfile.xlsx\\\"\\n   23: 	error := generateCSVFromXLSXFile(excelFileName, sheetIndex, testOutputer)\\n   24  	if error != nil {\\n   25  		t.Error(error.Error())\\n   ..\\n   38  }\\n   39  \\n   40: func TestGenerateCSVFromXLSXFileWithEmptyCells(t *testing.T) {\\n   41  var sheetIndex int\\n   42  	var excelFileName string\\n   ..\\n   52  	sheetIndex = 0\\n   53  	excelFileName = \\\"testfile2.xlsx\\\"\\n   54: 	error := generateCSVFromXLSXFile(excelFileName, sheetIndex, testOutputer)\\n   55  	if error != nil {\\n   56  		t.Error(error.Error())\\n\\n6 matches across 2 files\\n\",\n  136  			\"settings\":\n  137  			{\n  ...\n  143  		},\n  144  		{\n  145: 			\"file\": \"worksheet_test.go\",\n  146  			\"settings\":\n  147  			{\n  ...\n  167  		},\n  168  		{\n  169: 			\"file\": \"worksheet.go\",\n  170  			\"settings\":\n  171  			{\n  ...\n  319  			\"testfile.xlsx\",\n  320  			\"var\",\n  321: 			\"getWorksheetFromSheet\",\n  322  			\"body\",\n  323  			\"fmt\",\n  ...\n  360  		{\n  361  			\"selected\": 5,\n  362: 			\"sheets\":\n  363  			[\n  364  				{\n  ...\n  692  				{\n  693  					\"buffer\": 3,\n  694: 					\"file\": \"worksheet_test.go\",\n  695  					\"settings\":\n  696  					{\n  ...\n 1038  				{\n 1039  					\"buffer\": 6,\n 1040: 					\"file\": \"worksheet.go\",\n 1041  					\"settings\":\n 1042  					{\n ....\n 1439  			[\n 1440  				\"works\",\n 1441: 				\"worksheet.go\"\n 1442  			],\n 1443  			[\n ....\n 1451  			[\n 1452  				\"work\",\n 1453: 				\"worksheet_test.go\"\n 1454  			],\n 1455  			[\n\n/Users/twer/workspace/go/src/xlsx2csv/main.go:\n    9  \n   10  var xlsxPath = flag.String(\"f\", \"\", \"Path to an XLSX file\")\n   11: var sheetIndex = flag.Int(\"i\", 0, \"Index of sheet to convert, zero based\")\n   12  \n   13  type Outputer func(s string)\n   ..\n   21  }\n   22  \n   23: func generateCSVFromXLSXFile(excelFileName string, sheetIndex int, outputf Outputer) error {\n   24  	var xlFile *xlsx.File\n   25  	var error error\n   26: 	var sheetLen int\n   27  	var rowString string\n   28  \n   ..\n   31  		return error\n   32  	}\n   33: 	sheetLen = len(xlFile.Sheets)\n   34  	switch {\n   35: 	case sheetLen == 0:\n   36  		e := new(XLSX2CSVError)\n   37: 		e.error = \"This XLSX file contains no sheets.\"\n   38  		return *e\n   39: 	case sheetIndex >= sheetLen:\n   40  		e := new(XLSX2CSVError)\n   41: 		e.error = fmt.Sprintf(\"No sheet %d available, please select a sheet between 0 and %d\", sheetIndex, sheetLen-1)\n   42  		return *e\n   43  	}\n   44: 	sheet := xlFile.Sheets[sheetIndex]\n   45: 	for _, row := range sheet.Rows {\n   46  		rowString = \"\"\n   47  		for cellIndex, cell := range row.Cells {\n   ..\n   59  \n   60  func usage() {\n   61: 	fmt.Printf(`%s: <XLSXFile> <SheetIndex>\n   62  \n   63: Note: SheetIndex should be a number, zero based\n   64  `,\n   65  		os.Args[0])\n   ..\n   74  	}\n   75  	flag.Parse()\n   76: 	error = generateCSVFromXLSXFile(*xlsxPath, *sheetIndex, func(s string) { fmt.Printf(\"%s\", s) })\n   77  	if error != nil {\n   78  		fmt.Printf(error.Error())\n\n376 matches across 12 files\n",
+			"settings":
+			{
+				"buffer_size": 31048,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/Users/twer/workspace/go/src/xlsx/lib.go",
+			"settings":
+			{
+				"buffer_size": 9778,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/twer/workspace/go/src/xlsx/workbook_test.go",
+			"settings":
+			{
+				"buffer_size": 3165,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/twer/workspace/go/src/xlsx/lib_test.go",
+			"settings":
+			{
+				"buffer_size": 13761,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"selected_items":
+		[
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"proje",
+				"Project: Add Folder"
+			],
+			[
+				"proj",
+				"Project: Add Folder"
+			],
+			[
+				"create ",
+				"Package Control: Create Package File"
+			],
+			[
+				"GoSu build",
+				"GoSublime: Show last build output"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"instal ",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/twer/workspace/go/src/mybmwscript/mybmwscript.sublime-project",
+		"/Users/twer/workspace/go/src/mybmwscript/mapping_test.go",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/twer/workspace/go/src/myweb/myweb.sublime-project",
+		"/Users/twer/workspace/go/src/myweb/myweb",
+		"/Users/twer/workspace/go/src/xlsx/sharedstrings.go",
+		"/Users/twer/workspace/go/src/xlsx/xlsx.sublime-project",
+		"/Users/twer/workspace/go/src/mymath/mymath_test.go",
+		"/Users/twer/workspace/go/src/mymath/mymath.go",
+		"/Users/twer/workspace/go/src/mychannel/mychannel2.go",
+		"/Users/twer/workspace/go/src/mychannel/mychannel.go",
+		"/Users/twer/workspace/go/src/myroutines/myroutines.go",
+		"/Users/twer/workspace/go/src/myfile/myfile.go",
+		"/Users/twer/workspace/go/src/mycast/mycast.go",
+		"/Users/twer/workspace/go/src/helloworld/src/main.go",
+		"/Users/twer/workspace/go/src/myinterface/src/myinterface.go",
+		"/Users/twer/workspace/go/src/mynumber/fib.go",
+		"/Users/twer/workspace/go/src/myweb/myweb.go",
+		"/Users/twer/workspace/go/src/xlsx/workbook_test.go",
+		"/Users/twer/workspace/go/lib/xlsx/workbook.go",
+		"/Users/twer/workspace/go/lib/xlsx/doc.go",
+		"/Users/twer/workspace/go/src/myfile/data.txt",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Base File.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Default (OSX).sublime-keymap",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/Alignment/Default (OSX).sublime-keymap",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/Alignment/Base File.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/User/Go.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/GoSublime/USAGE.md",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/GoSublime/Default (OSX).sublime-keymap",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/Git/Git.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/GoSublime/GoSublime.sublime-settings",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/User/GoSublime.sublime-settings",
+		"/Users/twer/Documents/宝马单点登陆改造/sso集成测试",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/GoSublime/CHANGELOG.md",
+		"/Users/twer/Library/Application Support/Sublime Text 2/Packages/GoSublime/README.md",
+		"/Users/twer/workspace/go/src/myinterface/myinterface.go",
+		"/Users/twer/workspace/go/src/helloworld/helloWorld.go",
+		"/Users/twer/Documents/宝马单点登陆改造/LDAP服务器地址：218.4.109.71  端口号：389",
+		"/Users/twer/workspace/go/helloWorld.go",
+		"/Users/twer/workspace/bmw_from_server/bmw_project/script/productionDeploy.properties",
+		"/Users/twer/.zshrc"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dbname",
+			"Cells",
+			"Sheet",
+			"email",
+			"name",
+			"Users",
+			" \",",
+			"xlsxPath",
+			"super+y",
+			"File",
+			"generateCSVFromXLSXFile",
+			"func",
+			"interface",
+			"type",
+			"func",
+			"OpenFile",
+			"TestOpenFile",
+			"testfile.xlsx",
+			"var",
+			"getWorksheetFromSheet",
+			"body",
+			"fmt",
+			"how",
+			"s",
+			"super+ctrl+a",
+			"Println",
+			"fmt",
+			"\n	",
+			"super+b",
+			"		\n",
+			"font",
+			"...)",
+			"fmt",
+			"string",
+			"lyrics",
+			"you",
+			"command",
+			"	\n",
+			"\n	",
+			"		\n",
+			"187",
+			"func"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "mappingSso2Ac.go",
+					"settings":
+					{
+						"buffer_size": 560,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								266,
+								266
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/twer/workspace/go/src/xlsx2csv/main.go",
+					"settings":
+					{
+						"buffer_size": 1679,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								602,
+								602
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 22.0,
+						"translation.y": 234.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"settings":
+					{
+						"buffer_size": 31048,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										133,
+										138
+									],
+									[
+										139,
+										144
+									],
+									[
+										210,
+										215
+									],
+									[
+										372,
+										377
+									],
+									[
+										580,
+										585
+									],
+									[
+										674,
+										679
+									],
+									[
+										924,
+										929
+									],
+									[
+										1049,
+										1054
+									],
+									[
+										1155,
+										1160
+									],
+									[
+										1194,
+										1199
+									],
+									[
+										1308,
+										1313
+									],
+									[
+										1383,
+										1388
+									],
+									[
+										1455,
+										1460
+									],
+									[
+										1473,
+										1478
+									],
+									[
+										1541,
+										1546
+									],
+									[
+										1626,
+										1631
+									],
+									[
+										1770,
+										1775
+									],
+									[
+										1780,
+										1785
+									],
+									[
+										1795,
+										1800
+									],
+									[
+										1919,
+										1924
+									],
+									[
+										1925,
+										1930
+									],
+									[
+										1976,
+										1981
+									],
+									[
+										1982,
+										1987
+									],
+									[
+										2124,
+										2129
+									],
+									[
+										2207,
+										2212
+									],
+									[
+										2272,
+										2277
+									],
+									[
+										2300,
+										2305
+									],
+									[
+										2352,
+										2357
+									],
+									[
+										2399,
+										2404
+									],
+									[
+										2525,
+										2530
+									],
+									[
+										2543,
+										2548
+									],
+									[
+										2563,
+										2568
+									],
+									[
+										2570,
+										2575
+									],
+									[
+										2596,
+										2601
+									],
+									[
+										2620,
+										2625
+									],
+									[
+										2627,
+										2632
+									],
+									[
+										2648,
+										2653
+									],
+									[
+										2671,
+										2676
+									],
+									[
+										2680,
+										2685
+									],
+									[
+										2689,
+										2694
+									],
+									[
+										2705,
+										2710
+									],
+									[
+										2788,
+										2793
+									],
+									[
+										2801,
+										2806
+									],
+									[
+										2817,
+										2822
+									],
+									[
+										2842,
+										2847
+									],
+									[
+										2852,
+										2857
+									],
+									[
+										2889,
+										2894
+									],
+									[
+										2901,
+										2906
+									],
+									[
+										2932,
+										2937
+									],
+									[
+										3049,
+										3054
+									],
+									[
+										3200,
+										3205
+									],
+									[
+										3402,
+										3407
+									],
+									[
+										3428,
+										3433
+									],
+									[
+										3528,
+										3533
+									],
+									[
+										3541,
+										3546
+									],
+									[
+										3707,
+										3712
+									],
+									[
+										3728,
+										3733
+									],
+									[
+										3836,
+										3841
+									],
+									[
+										3916,
+										3921
+									],
+									[
+										3993,
+										3998
+									],
+									[
+										4002,
+										4007
+									],
+									[
+										4182,
+										4187
+									],
+									[
+										4214,
+										4219
+									],
+									[
+										4252,
+										4257
+									],
+									[
+										4315,
+										4320
+									],
+									[
+										4400,
+										4405
+									],
+									[
+										4407,
+										4412
+									],
+									[
+										4526,
+										4531
+									],
+									[
+										4551,
+										4556
+									],
+									[
+										4570,
+										4575
+									],
+									[
+										4626,
+										4631
+									],
+									[
+										4650,
+										4655
+									],
+									[
+										4694,
+										4699
+									],
+									[
+										4711,
+										4716
+									],
+									[
+										4743,
+										4748
+									],
+									[
+										4811,
+										4816
+									],
+									[
+										4888,
+										4893
+									],
+									[
+										5035,
+										5040
+									],
+									[
+										5234,
+										5239
+									],
+									[
+										5365,
+										5370
+									],
+									[
+										5475,
+										5480
+									],
+									[
+										5528,
+										5533
+									],
+									[
+										5688,
+										5693
+									],
+									[
+										5712,
+										5717
+									],
+									[
+										5824,
+										5829
+									],
+									[
+										5846,
+										5851
+									],
+									[
+										5868,
+										5873
+									],
+									[
+										5934,
+										5939
+									],
+									[
+										6063,
+										6068
+									],
+									[
+										6258,
+										6263
+									],
+									[
+										6279,
+										6284
+									],
+									[
+										6300,
+										6305
+									],
+									[
+										6339,
+										6344
+									],
+									[
+										6360,
+										6365
+									],
+									[
+										6519,
+										6524
+									],
+									[
+										6529,
+										6534
+									],
+									[
+										6669,
+										6674
+									],
+									[
+										6882,
+										6887
+									],
+									[
+										7044,
+										7049
+									],
+									[
+										7154,
+										7159
+									],
+									[
+										7207,
+										7212
+									],
+									[
+										7329,
+										7334
+									],
+									[
+										7341,
+										7346
+									],
+									[
+										7427,
+										7432
+									],
+									[
+										7439,
+										7444
+									],
+									[
+										7451,
+										7456
+									],
+									[
+										7515,
+										7520
+									],
+									[
+										7634,
+										7639
+									],
+									[
+										7784,
+										7789
+									],
+									[
+										7821,
+										7826
+									],
+									[
+										7842,
+										7847
+									],
+									[
+										7881,
+										7886
+									],
+									[
+										7902,
+										7907
+									],
+									[
+										8061,
+										8066
+									],
+									[
+										8071,
+										8076
+									],
+									[
+										8242,
+										8247
+									],
+									[
+										8529,
+										8534
+									],
+									[
+										8663,
+										8668
+									],
+									[
+										8773,
+										8778
+									],
+									[
+										8826,
+										8831
+									],
+									[
+										8948,
+										8953
+									],
+									[
+										8960,
+										8965
+									],
+									[
+										9046,
+										9051
+									],
+									[
+										9058,
+										9063
+									],
+									[
+										9070,
+										9075
+									],
+									[
+										9126,
+										9131
+									],
+									[
+										9636,
+										9641
+									],
+									[
+										9770,
+										9775
+									],
+									[
+										9799,
+										9804
+									],
+									[
+										9820,
+										9825
+									],
+									[
+										9859,
+										9864
+									],
+									[
+										9880,
+										9885
+									],
+									[
+										10039,
+										10044
+									],
+									[
+										10049,
+										10054
+									],
+									[
+										10347,
+										10352
+									],
+									[
+										10611,
+										10616
+									],
+									[
+										10864,
+										10869
+									],
+									[
+										11216,
+										11221
+									],
+									[
+										11637,
+										11642
+									],
+									[
+										12107,
+										12112
+									],
+									[
+										12581,
+										12586
+									],
+									[
+										13007,
+										13012
+									],
+									[
+										13252,
+										13257
+									],
+									[
+										13269,
+										13274
+									],
+									[
+										13288,
+										13293
+									],
+									[
+										13556,
+										13561
+									],
+									[
+										13819,
+										13824
+									],
+									[
+										14080,
+										14085
+									],
+									[
+										14347,
+										14352
+									],
+									[
+										14502,
+										14507
+									],
+									[
+										14527,
+										14532
+									],
+									[
+										14611,
+										14616
+									],
+									[
+										14745,
+										14750
+									],
+									[
+										14769,
+										14774
+									],
+									[
+										14781,
+										14786
+									],
+									[
+										14793,
+										14798
+									],
+									[
+										14832,
+										14837
+									],
+									[
+										14856,
+										14861
+									],
+									[
+										14939,
+										14944
+									],
+									[
+										15073,
+										15078
+									],
+									[
+										15137,
+										15142
+									],
+									[
+										15158,
+										15163
+									],
+									[
+										15364,
+										15369
+									],
+									[
+										15629,
+										15634
+									],
+									[
+										15858,
+										15863
+									],
+									[
+										15884,
+										15889
+									],
+									[
+										16039,
+										16044
+									],
+									[
+										16197,
+										16202
+									],
+									[
+										16206,
+										16211
+									],
+									[
+										16255,
+										16260
+									],
+									[
+										16298,
+										16303
+									],
+									[
+										16364,
+										16369
+									],
+									[
+										16396,
+										16401
+									],
+									[
+										16405,
+										16410
+									],
+									[
+										16411,
+										16416
+									],
+									[
+										16421,
+										16426
+									],
+									[
+										16432,
+										16437
+									],
+									[
+										16471,
+										16476
+									],
+									[
+										16565,
+										16570
+									],
+									[
+										16580,
+										16585
+									],
+									[
+										16622,
+										16627
+									],
+									[
+										16642,
+										16647
+									],
+									[
+										16657,
+										16662
+									],
+									[
+										16683,
+										16688
+									],
+									[
+										16693,
+										16698
+									],
+									[
+										16699,
+										16704
+									],
+									[
+										16725,
+										16730
+									],
+									[
+										16732,
+										16737
+									],
+									[
+										16886,
+										16891
+									],
+									[
+										16975,
+										16980
+									],
+									[
+										17287,
+										17292
+									],
+									[
+										17607,
+										17612
+									],
+									[
+										17615,
+										17620
+									],
+									[
+										17627,
+										17632
+									],
+									[
+										17635,
+										17640
+									],
+									[
+										17661,
+										17666
+									],
+									[
+										17673,
+										17678
+									],
+									[
+										17681,
+										17686
+									],
+									[
+										17707,
+										17712
+									],
+									[
+										17719,
+										17724
+									],
+									[
+										17727,
+										17732
+									],
+									[
+										17754,
+										17759
+									],
+									[
+										17809,
+										17814
+									],
+									[
+										17821,
+										17826
+									],
+									[
+										18080,
+										18085
+									],
+									[
+										18087,
+										18092
+									],
+									[
+										18141,
+										18146
+									],
+									[
+										18148,
+										18153
+									],
+									[
+										18180,
+										18185
+									],
+									[
+										18198,
+										18203
+									],
+									[
+										18205,
+										18210
+									],
+									[
+										18225,
+										18230
+									],
+									[
+										18273,
+										18278
+									],
+									[
+										18315,
+										18320
+									],
+									[
+										18330,
+										18335
+									],
+									[
+										18367,
+										18372
+									],
+									[
+										18382,
+										18387
+									],
+									[
+										18413,
+										18418
+									],
+									[
+										18419,
+										18424
+									],
+									[
+										18463,
+										18468
+									],
+									[
+										18469,
+										18474
+									],
+									[
+										18649,
+										18654
+									],
+									[
+										18700,
+										18705
+									],
+									[
+										18778,
+										18783
+									],
+									[
+										18824,
+										18829
+									],
+									[
+										18984,
+										18989
+									],
+									[
+										19012,
+										19017
+									],
+									[
+										19093,
+										19098
+									],
+									[
+										19231,
+										19236
+									],
+									[
+										19313,
+										19318
+									],
+									[
+										19331,
+										19336
+									],
+									[
+										19352,
+										19357
+									],
+									[
+										19373,
+										19378
+									],
+									[
+										19391,
+										19396
+									],
+									[
+										19412,
+										19417
+									],
+									[
+										19436,
+										19441
+									],
+									[
+										19454,
+										19459
+									],
+									[
+										19475,
+										19480
+									],
+									[
+										19631,
+										19636
+									],
+									[
+										19786,
+										19791
+									],
+									[
+										19815,
+										19820
+									],
+									[
+										19901,
+										19906
+									],
+									[
+										20035,
+										20040
+									],
+									[
+										20063,
+										20068
+									],
+									[
+										20079,
+										20084
+									],
+									[
+										20095,
+										20100
+									],
+									[
+										20138,
+										20143
+									],
+									[
+										20166,
+										20171
+									],
+									[
+										20251,
+										20256
+									],
+									[
+										20385,
+										20390
+									],
+									[
+										20658,
+										20663
+									],
+									[
+										20813,
+										20818
+									],
+									[
+										20845,
+										20850
+									],
+									[
+										20934,
+										20939
+									],
+									[
+										21068,
+										21073
+									],
+									[
+										21242,
+										21247
+									],
+									[
+										21270,
+										21275
+									],
+									[
+										21355,
+										21360
+									],
+									[
+										21489,
+										21494
+									],
+									[
+										21675,
+										21680
+									],
+									[
+										21918,
+										21923
+									],
+									[
+										22161,
+										22166
+									],
+									[
+										22398,
+										22403
+									],
+									[
+										22462,
+										22467
+									],
+									[
+										22534,
+										22539
+									],
+									[
+										22568,
+										22573
+									],
+									[
+										22670,
+										22675
+									],
+									[
+										22723,
+										22728
+									],
+									[
+										22845,
+										22850
+									],
+									[
+										22857,
+										22862
+									],
+									[
+										22943,
+										22948
+									],
+									[
+										22955,
+										22960
+									],
+									[
+										22967,
+										22972
+									],
+									[
+										23023,
+										23028
+									],
+									[
+										23205,
+										23210
+									],
+									[
+										23339,
+										23344
+									],
+									[
+										23360,
+										23365
+									],
+									[
+										23381,
+										23386
+									],
+									[
+										23420,
+										23425
+									],
+									[
+										23441,
+										23446
+									],
+									[
+										23547,
+										23552
+									],
+									[
+										23623,
+										23628
+									],
+									[
+										23668,
+										23673
+									],
+									[
+										23719,
+										23724
+									],
+									[
+										23725,
+										23730
+									],
+									[
+										23736,
+										23741
+									],
+									[
+										23801,
+										23806
+									],
+									[
+										23807,
+										23812
+									],
+									[
+										23818,
+										23823
+									],
+									[
+										23852,
+										23857
+									],
+									[
+										23858,
+										23863
+									],
+									[
+										23869,
+										23874
+									],
+									[
+										23900,
+										23905
+									],
+									[
+										23917,
+										23922
+									],
+									[
+										23923,
+										23928
+									],
+									[
+										23934,
+										23939
+									],
+									[
+										23958,
+										23963
+									],
+									[
+										24028,
+										24033
+									],
+									[
+										24067,
+										24072
+									],
+									[
+										24112,
+										24117
+									],
+									[
+										24185,
+										24190
+									],
+									[
+										24227,
+										24232
+									],
+									[
+										24275,
+										24280
+									],
+									[
+										24356,
+										24361
+									],
+									[
+										24405,
+										24410
+									],
+									[
+										24459,
+										24464
+									],
+									[
+										24534,
+										24539
+									],
+									[
+										24578,
+										24583
+									],
+									[
+										24631,
+										24636
+									],
+									[
+										24637,
+										24642
+									],
+									[
+										24717,
+										24722
+									],
+									[
+										24723,
+										24728
+									],
+									[
+										24772,
+										24777
+									],
+									[
+										24778,
+										24783
+									],
+									[
+										24832,
+										24837
+									],
+									[
+										24838,
+										24843
+									],
+									[
+										24922,
+										24927
+									],
+									[
+										24928,
+										24933
+									],
+									[
+										24981,
+										24986
+									],
+									[
+										24987,
+										24992
+									],
+									[
+										25049,
+										25054
+									],
+									[
+										25055,
+										25060
+									],
+									[
+										25124,
+										25129
+									],
+									[
+										25130,
+										25135
+									],
+									[
+										25166,
+										25171
+									],
+									[
+										25172,
+										25177
+									],
+									[
+										25217,
+										25222
+									],
+									[
+										25223,
+										25228
+									],
+									[
+										25720,
+										25725
+									],
+									[
+										25727,
+										25732
+									],
+									[
+										26252,
+										26257
+									],
+									[
+										26443,
+										26448
+									],
+									[
+										26703,
+										26708
+									],
+									[
+										26768,
+										26773
+									],
+									[
+										26883,
+										26888
+									],
+									[
+										27078,
+										27083
+									],
+									[
+										27143,
+										27148
+									],
+									[
+										27259,
+										27264
+									],
+									[
+										27557,
+										27562
+									],
+									[
+										27748,
+										27753
+									],
+									[
+										28008,
+										28013
+									],
+									[
+										28073,
+										28078
+									],
+									[
+										28188,
+										28193
+									],
+									[
+										28383,
+										28388
+									],
+									[
+										28448,
+										28453
+									],
+									[
+										28564,
+										28569
+									],
+									[
+										28768,
+										28773
+									],
+									[
+										28870,
+										28875
+									],
+									[
+										28983,
+										28988
+									],
+									[
+										28992,
+										28997
+									],
+									[
+										29088,
+										29093
+									],
+									[
+										29191,
+										29196
+									],
+									[
+										29314,
+										29319
+									],
+									[
+										29417,
+										29422
+									],
+									[
+										29505,
+										29510
+									],
+									[
+										29679,
+										29684
+									],
+									[
+										29719,
+										29724
+									],
+									[
+										29875,
+										29880
+									],
+									[
+										29983,
+										29988
+									],
+									[
+										30079,
+										30084
+									],
+									[
+										30101,
+										30106
+									],
+									[
+										30139,
+										30144
+									],
+									[
+										30234,
+										30239
+									],
+									[
+										30275,
+										30280
+									],
+									[
+										30289,
+										30294
+									],
+									[
+										30367,
+										30372
+									],
+									[
+										30403,
+										30408
+									],
+									[
+										30428,
+										30433
+									],
+									[
+										30440,
+										30445
+									],
+									[
+										30489,
+										30494
+									],
+									[
+										30505,
+										30510
+									],
+									[
+										30512,
+										30517
+									],
+									[
+										30552,
+										30557
+									],
+									[
+										30711,
+										30716
+									],
+									[
+										30744,
+										30749
+									],
+									[
+										30906,
+										30911
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								374,
+								374
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/twer/workspace/go/src/xlsx/lib.go",
+					"settings":
+					{
+						"buffer_size": 9778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								588,
+								588
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/twer/workspace/go/src/xlsx/workbook_test.go",
+					"settings":
+					{
+						"buffer_size": 3165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Go/Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/twer/workspace/go/src/xlsx/lib_test.go",
+					"settings":
+					{
+						"buffer_size": 13761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Go/Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 214.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"ma",
+				"mybmwscript/mapping_test.go"
+			],
+			[
+				"map",
+				"mybmwscript/mappingSso2Ac.go"
+			],
+			[
+				"",
+				"untitled.go"
+			],
+			[
+				"main",
+				"/Users/twer/workspace/go/src/xlsx2csv/main.go"
+			],
+			[
+				"li",
+				"xlsx/lib.go"
+			],
+			[
+				"lib",
+				"xlsx/lib.go"
+			],
+			[
+				"mai",
+				"xlsx2csv/main_test.go"
+			],
+			[
+				"works",
+				"worksheet.go"
+			],
+			[
+				"sha",
+				"sharedstrings.go"
+			],
+			[
+				"work",
+				"worksheet_test.go"
+			],
+			[
+				"w",
+				"workbook_test.go"
+			],
+			[
+				"wo",
+				"workbook.go"
+			],
+			[
+				"xls",
+				"xlsx.sublime-project"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true
+}
